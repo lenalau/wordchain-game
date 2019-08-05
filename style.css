@@ -1,0 +1,87 @@
+body {
+  padding: 0;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.card {
+  margin: 30px;
+  padding: 30px;
+  width: 1000px;
+}
+.btn-start {
+  padding: 30px 50px;
+  font-size: 25px;
+  margin: 20px;
+}
+
+/* .card-img {
+  opacity: 1;
+  filter: alpha(opacity=100); 
+}
+
+.card-img:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50); 
+} */
+.card-img-overlay {
+  padding: 50px;
+}
+
+h5 {
+  color: black;
+}
+h1 {
+  color: black;
+}
+.container {
+  display: flex;
+}
+#game-board {
+  display: flex;
+  flex-direction: row;
+}
+
+canvas {
+  border: 1px solid black;
+  margin: 30px 30px 0px;
+}
+.game-intro {
+  float: left;
+  padding: 0% 5%;
+}
+
+.game-intro p {
+  font-size: 18px;
+  font-family: "Courier";
+}
+p {
+  color: black;
+  font-size: 18px;
+  font-family: "Courier";
+
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+.logo-img {
+  width: 700px;
+}
+input {
+  width: 400px;
+}
+
+body button {
+  font-size: 15px;
+  background-color: rgba(54, 51, 51, 0.815);
+  color: #fff;
+  padding: 5px 10px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.example {
+  color: rgb(197, 193, 193);
+}
