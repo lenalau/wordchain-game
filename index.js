@@ -1,30 +1,47 @@
 
 let state = {
-    imagequiz: false, // the othr option is wordchain (the default)
+    wordchainquiz: true,
+    // the othr option is wordchain (the default)
     startNextWordchain: () => {
+        state.wordchainquiz = true
+        state.imagequiz = false
+        state.randomquizz = false
         fieldIndex += 1
         picIndex += 1
         wordIndex = 0
         imgIndex = 0
-        state.imagequiz = false
+
         drawWordchain()
         drawWordfieldImg()
     },
     startNextImagequiz: () => {
+        state.imagequiz = true
+        state.wordchainquiz = false
+        state.randomquizz = false
         wordIndex = 0
         imgIndex = 0
-        state.imagequiz = true
         drawImagequiz()
+    },
+    startRandomQuiz: () => {
+
+        state.randomquizz = true
+        state.wordchainquiz = false
+        state.imagequiz = false
+        drawRandomQuiz()
     }
 }
 
 let handleInput = (event) => {
     if (event.keyCode === 13) {
-        if (state.imagequiz) {
+        if (state.wordchainquiz) {
+            checkWordchainInput()
+        } else if
+            (state.imagequiz) {
             checkImagequizInput()
         } else {
-            checkWordchainInput()
+            checkRandomquizInput()
         }
+
     }
 }
 
@@ -167,13 +184,29 @@ function finishGame() { // only for last iteration if player wins all
         ctx.fillText(wordfieldWords[fieldIndex], 20, 100);
     }
 }
+let count = 0
+function drawCounter() {
+    countctx.clearRect(0, 0, countCanvas.width, countCanvas.height)
+    countctx.font = "25px Courier"
+    countctx.fillStyle = "black";
+    countctx.fillText('Zeit:', 30, 70);
+    countctx.fillText('$15$ Sekunden', 30, 90);
+    countctx.fillText('Punktzahl:', 30, 120);
+    countctx.fillText([count], 30, 140);
+
+}
 let randImgIndex = [(Math.floor(Math.random() * pics[picIndex].length))]
 let randPicIndex = [(Math.floor(Math.random() * pics.length))]
 
-function randomQuiz() { // define a new state and act between
-    document.getElementById("wordfield-icon").style.display = "none"
+function drawRandomQuiz() { // define a new state and act between
+    state.randomquizz = true
     document.getElementById("example").style.display = "none"
+    document.getElementById("wordfield-icon").style.display = "none"
+    document.getElementById("time-counter").style.display = "block"
+
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
+
+
     stopDrawWord()
 
     let img = new Image(595, 400)
@@ -182,22 +215,35 @@ function randomQuiz() { // define a new state and act between
         ctx.drawImage(img, (myCanvas.width / 2 - img.naturalWidth / 2), (myCanvas.height / 2 - img.naturalHeight / 2), img.naturalWidth, img.naturalHeight)
     }
     drawWordfieldImg()
-
+    drawCounter()
 }
 function checkRandomquizInput() {
-    state.imagequiz = true
-    let userInput = document.getElementsByTagName('input')[0].value
 
-    if (userInput === wordfield[randPicIndex][randImgIndex] || userInput === "") {
+    state.randomquizz = true
+    let userInput = document.getElementsByTagName('input')[0].value
+    console.log(wordfield[randPicIndex][randImgIndex])
+    if (userInput === wordfield[randPicIndex][randImgIndex]) {
+        document.getElementsByTagName('input')[0].value = ""
         alert('Super! Du hast 5 Punkte gesammelt')
-        randomQuiz()
-        // ... if not last word of field
+        randImgIndex = [(Math.floor(Math.random() * pics[picIndex].length))]
+        randPicIndex = [(Math.floor(Math.random() * pics.length))]
+        count += 5
+        drawRandomQuiz()
+        drawCounter()
+
+        if (count === 50) {
+            drawCounter()
+            alert('Hooray, 50 Punkte!')
+
+
+        }
     } else { // if input is not correct 
         alert('oops, please try again')
         document.getElementsByTagName('input')[0].value = ""
-        imgIndex = 0
-        wordIndex = 0
-        drawImagequiz()
+        randImgIndex = [(Math.floor(Math.random() * pics[picIndex].length))]
+        randPicIndex = [(Math.floor(Math.random() * pics.length))]
+        drawRandomQuiz()
+        drawCounter()
     }
 }
 
@@ -259,6 +305,8 @@ function checkWordchainInput() {
         } else { // .. if won the word field
             alert('Super! Teste jetzt dein Wissen in diesem Wortfeld.')
             ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
+            console.log(state)
+
             state.startNextImagequiz()
 
         }
@@ -275,21 +323,21 @@ function checkWordchainInput() {
     }
 }
 
-function goToWordfield(index) {
+// function goToWordfield(index) {
 
-    fieldIndex = index
-    picIndex = index
-    imgIndex = 0
-    wordIndex = 0
-    console.log(fieldIndex)
-    console.log(picIndex)
-    console.log(imgIndex)
-    console.log(wordIndex)
-    console.log(index)
+//     fieldIndex = index
+//     picIndex = index
+//     imgIndex = 0
+//     wordIndex = 0
+//     console.log(fieldIndex)
+//     console.log(picIndex)
+//     console.log(imgIndex)
+//     console.log(wordIndex)
 
-    drawWordchain()
-    drawWordfieldImg()
-}
+
+//     drawWordchain()
+//     drawWordfieldImg()
+// }
 
 window.onload = function () {
 
@@ -297,6 +345,8 @@ window.onload = function () {
     ctx = myCanvas.getContext('2d')
     smallCanvas = document.getElementById("img-wordfield")
     smallctx = smallCanvas.getContext('2d')
+    countCanvas = document.getElementById("time-point-counter")
+    countctx = countCanvas.getContext('2d')
     document.getElementById("room").style.display = "none"
     document.getElementById("user-input").style.display = "none"
     document.getElementById("game-board").style.display = "none"
@@ -305,12 +355,25 @@ window.onload = function () {
     let elems = document.querySelectorAll('*[wordfield]');
     for (let index = 0; index < elems.length; index++) {
         elems[index].onclick = (e) => {
-            goToWordfield(index);
+            document.getElementById("wordfield-icon").style.display = "block"
+            document.getElementById("user-input").style.display = "block"
+            document.getElementById("example").style.display = "block"
+            document.getElementById("time-counter").style.display = "none"
+
+
+            fieldIndex = index - 1
+            picIndex = index - 1
+            imgIndex = 0
+            wordIndex = 0
+
+            state.startNextWordchain()
+            // goToWordfield(index);
+            console.log(state)
         };
     }
 
     let rand = document.getElementById('random-quiz');
-    rand.onclick = randomQuiz
+    rand.onclick = state.startRandomQuiz
 
 
 
@@ -320,6 +383,7 @@ window.onload = function () {
         document.getElementById("room").style.display = "block"
         document.getElementById("user-input").style.display = "block"
         document.getElementById("game-board").style.display = "block"
+        document.getElementById("time-counter").style.display = "none"
 
         drawWordchain()
         drawWordfieldImg()
