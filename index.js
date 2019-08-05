@@ -279,6 +279,12 @@ function goToWordfield(index) {
 
     fieldIndex = index
     picIndex = index
+    imgIndex = 0
+    wordIndex = 0
+    console.log(fieldIndex)
+    console.log(picIndex)
+    console.log(imgIndex)
+    console.log(wordIndex)
     console.log(index)
 
     drawWordchain()
