@@ -47,19 +47,23 @@ let handleInput = (event) => {
 let wordfield = [
     ['Lampe', 'Tisch', 'Bett', 'Schrank', 'Sofa', 'Stuhl', 'Regal', 'Pflanze'],
     ['Reis', 'Kartoffeln', 'Nudeln', 'Brot', 'Käse', 'Fleisch', 'Eier', 'Salz'],
-    ['Wasser', 'Saft', 'Kaffee', 'Tee', 'Bier', 'Wein', 'Milch', 'Limonade']
+    ['Wasser', 'Saft', 'Kaffee', 'Tee', 'Bier', 'Wein', 'Milch', 'Limonade'],
+    ['Apfel', 'Banane', 'Birne', 'Erdbeeren', 'Kirschen', 'Weintrauben', 'Zitrone'],
+    ['Fußball', 'Basketball', 'Eishockey', 'Tennis', 'Volleyball', 'Handball', 'Golf']
 ]
 
 
 
 let pics = [
-    ['./images/Lampe.jpg', './images/möbel/Tisch.jpeg', './images/möbel/Bett.jpeg', './images/möbel/Schrank.jpeg', './images/möbel/Sofa.jpeg', './images/möbel/Stuhl.jpeg', './images/möbel/Regal.jpeg', './images/themenräume_bilder/pflanzen.jpg'],
+    ['./images/Lampe.jpg', './images/möbel/Tisch.jpeg', './images/möbel/Bett.jpeg', './images/möbel/Schrank.jpeg', './images/möbel/Sofa.jpeg', './images/möbel/Stuhl.jpeg', './images/möbel/Regal.jpeg', './images/möbel/Pflanze.jpeg'],
     ['./images/supermarkt/Reis.jpeg', './images/supermarkt/Kartoffeln.jpeg', './images/supermarkt/Nudeln.jpeg', './images/supermarkt/Brot.jpeg', './images/supermarkt/Käse.jpeg', './images/supermarkt/Fleisch.jpeg', './images/supermarkt/Eier.jpeg', './images/supermarkt/Salz.jpeg'],
-    ['./images/Getränke/Wasser.jpeg', './images/Getränke/Saft.jpeg', './images/Getränke/Kaffee.jpeg', './images/Getränke/Tee.jpeg', './images/Getränke/Bier.jpeg', './images/Getränke/Wein.jpeg', './images/Getränke/Milch.jpeg', './images/Getränke/Limonade.jpeg']
+    ['./images/Getränke/Wasser.jpeg', './images/Getränke/Saft.jpeg', './images/Getränke/Kaffee.jpeg', './images/Getränke/Tee.jpeg', './images/Getränke/Bier.jpeg', './images/Getränke/Wein.jpeg', './images/Getränke/Milch.jpeg', './images/Getränke/Limonade.jpeg'],
+    ['./images/obst/Apfel.jpeg', './images/obst/Banane.jpeg', './images/obst/Birne.jpeg', './images/obst/Erdbeeren.png', './images/obst/Kirschen.jpeg', './images/obst/Weintrauben.jpeg', './images/obst/Zitrone.jpeg'],
+    ['./images/Ballsport/fussball.jpeg', './images/Ballsport/Basketball.jpeg', './images/Ballsport/Eishockey.jpeg', './images/Ballsport/Tennis.jpeg', './images/Ballsport/Volleyball.jpeg', './images/Ballsport/Handball.jpeg', './images/Ballsport/Golf.jpeg']
 ]
 
-let wordfieldWords = ['Möbel', 'Lebensmittel', 'Getränke', 'Glückwunsch']
-let wordfieldPics = ['./images/möbel/WF_möbel.jpeg', './images/supermarkt/WF Supermarkt.jpeg', './images/Getränke/Getränke.jpeg', './images/HerzlichenGlückwunsch.jpeg']
+let wordfieldWords = ['Möbel', 'Lebensmittel', 'Getränke', 'Obst', 'Ballsport', 'Glückwunsch!']
+let wordfieldPics = ['./images/möbel/wortfeld_möbel.jpeg', './images/supermarkt/WF Supermarkt.jpeg', './images/Getränke/Getränke.jpeg', './images/obst/Obst.jpg', './images/Ballsport/Ballsport.jpeg', './images/Eule.jpg']
 
 let myCanvas;
 let ctx;
@@ -76,48 +80,52 @@ var imgIndex = 0
 
 var x = 0;
 var spdX = 30;
-var y = 0;
+var y = 41;
 var spdY = 40;
+var pxOfWord
 
 
 
 // for little canvas, showing image of current wordfield
 function drawWordfieldImg() {
     smallctx.clearRect(0, 0, smallCanvas.width, smallCanvas.height)
+    smallctx.fillStyle = "white";
+    smallctx.fillRect(0, 0, 300, 200);
     let img = new Image(300, 200)
     img.src = wordfieldPics[fieldIndex]
     img.onload = function () {
         smallctx.drawImage(img, (smallCanvas.width / 2 - img.naturalWidth / 2), (smallCanvas.height / 2 - img.naturalHeight / 2), img.naturalWidth, img.naturalHeight)
-        smallctx.font = "35px Courier"
+        smallctx.font = "35px 'Concert One'"
         smallctx.fillStyle = "black";
-        smallctx.fillText(wordfieldWords[fieldIndex], (smallCanvas.width / 2 - 21 * wordfieldWords[fieldIndex].length / 2), (smallCanvas.height / 2));
+        smallctx.fillText(wordfieldWords[fieldIndex], (smallCanvas.width / 2 - 17 * wordfieldWords[fieldIndex].length / 2), (smallCanvas.height / 2));
     }
 }
 
 // ------> DRAW WORDCHAIN <-------------------------------------------------
 
 function updateWordPos() {
-    x += spdX;
-    y += spdY;
+
     ctx.fillStyle = "black";
     ctx.fillText(wordfield[fieldIndex][wordIndex], x, y);
+    x += spdX;
+    y += spdY;
 
-    if (x > 575) {
+    if (x > pxOfWord) {
         spdX = -30;
     }
-    if (x < 0) {
+    if (x < 10) {
         spdX = 30
     }
-    if (y > 400) {
+    if (y > 392) {
         spdY = -40;
     }
-    if (y < 0) {
+    if (y < 63) {
         spdY = 40;
     }
 }
 // starts updateWordPos
 function startDrawWord() {
-    ctx.font = "50px Courier"
+    ctx.font = "50px 'Concert One'"
 
     if (!globalInterval) {
         globalInterval = setInterval(updateWordPos, 600)
@@ -133,11 +141,13 @@ function drawWordchain() {
     document.getElementById("wordfield-icon").style.display = "block"
     document.getElementById("example").style.display = "block"
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
-
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, 595, 416);
     let img = new Image(575, 400)
     img.src = pics[fieldIndex][imgIndex]
     img.onload = function () {
         ctx.drawImage(img, (myCanvas.width / 2 - img.naturalWidth / 2), (myCanvas.height / 2 - img.naturalHeight / 2), img.naturalWidth, img.naturalHeight)
+        pxOfWord = (595 - (wordfield[fieldIndex][wordIndex].length * 25))
         startDrawWord()
     }
 }
@@ -147,7 +157,10 @@ function drawWordchain() {
 
 // PictureBackground for Picturequiz
 function drawImagequiz() {
+    document.getElementById("example").style.display = "none"
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, 595, 416);
     stopDrawWord()
 
     let img = new Image(595, 400)
@@ -164,12 +177,13 @@ function drawImagequiz() {
 let count = 0
 function drawCounter() {
     countctx.clearRect(0, 0, countCanvas.width, countCanvas.height)
-    countctx.font = "25px Courier"
+    countctx.fillStyle = "white";
+    countctx.fillRect(0, 0, 595, 416);
+
+    countctx.font = "25px 'Concert One' "
     countctx.fillStyle = "black";
-    countctx.fillText('Zeit:', 30, 70);
-    countctx.fillText('$15$ Sekunden', 30, 90);
-    countctx.fillText('Punktzahl:', 30, 120);
-    countctx.fillText([count], 30, 140);
+    countctx.fillText('Richtige Wörter:', 30, 80);
+    countctx.fillText([count], 30, 120);
 
 }
 let randImgIndex = [(Math.floor(Math.random() * pics[fieldIndex].length))]
@@ -182,14 +196,17 @@ function drawRandomQuiz() { // define a new state and act between
     document.getElementById("time-counter").style.display = "block"
 
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, 595, 416);
     stopDrawWord()
+
 
     let img = new Image(595, 400)
     img.src = pics[randFieldIndex][randImgIndex]
     img.onload = function () {
         ctx.drawImage(img, (myCanvas.width / 2 - img.naturalWidth / 2), (myCanvas.height / 2 - img.naturalHeight / 2), img.naturalWidth, img.naturalHeight)
     }
-    drawWordfieldImg()
+
     drawCounter()
 }
 
@@ -200,16 +217,15 @@ function checkRandomquizInput() {
     console.log(wordfield[randFieldIndex][randImgIndex])
     if (userInput === wordfield[randFieldIndex][randImgIndex]) {
         document.getElementsByTagName('input')[0].value = ""
-        alert('Super! Du hast 5 Punkte gesammelt')
         randImgIndex = [(Math.floor(Math.random() * pics[fieldIndex].length))]
         randFieldIndex = [(Math.floor(Math.random() * pics.length))]
-        count += 5
+        count += 1
         drawRandomQuiz()
         drawCounter()
 
         if (count === 50) {
             drawCounter()
-            alert('Hooray, 50 Punkte!')
+            alert('Nicht schlecht! 50 Wörter!')
 
 
         }
@@ -219,7 +235,14 @@ function checkRandomquizInput() {
         randImgIndex = [(Math.floor(Math.random() * pics[fieldIndex].length))]
         randFieldIndex = [(Math.floor(Math.random() * pics.length))]
         drawRandomQuiz()
+        count -= 1
         drawCounter()
+        if (count < 0) {
+            alert('Game over')
+            drawRandomQuiz()
+            count = 0
+            drawCounter()
+        }
     }
 }
 
@@ -227,14 +250,15 @@ function checkRandomquizInput() {
 
 function finishGame() { // only for last iteration if player wins all
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
-
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, 595, 416);
     let img = new Image(595, 400)
     img.src = wordfieldPics[fieldIndex]
     img.onload = function () {
         ctx.drawImage(img, (myCanvas.width / 2 - img.naturalWidth / 2), (myCanvas.height / 2 - img.naturalHeight / 2), img.naturalWidth, img.naturalHeight)
-        ctx.font = "50px Courier"
+        ctx.font = "50px 'Concert One' "
         ctx.fillStyle = "black";
-        ctx.fillText(wordfieldWords[fieldIndex], 20, 100);
+        ctx.fillText(wordfieldWords[fieldIndex], (myCanvas.width / 2 - 25 * wordfieldWords[fieldIndex].length / 2), (myCanvas.height / 2));
     }
 }
 

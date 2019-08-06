@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+    <link
+        href="https://fonts.googleapis.com/css?family=Concert+One|Kalam|Lacquer|Montserrat|Permanent+Marker|Roboto+Mono&display=swap"
+        rel="stylesheet">
     <script type="text/javascript" src="index.js">
 
     </script>
@@ -39,17 +41,18 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#dropdown-menu" id="navbarDropdownMenuLink"
                             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Wortfelder
+                            Kettenspiel: Wortfelder
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="#Möbel" wordfield="Möbel">Möbel</a>
                             <a class="dropdown-item" href="#Lebensmittel" wordfield="Lebensmittel">Lebensmittel</a>
                             <a class="dropdown-item" href="#Getränke" wordfield="Getränke">Getränke</a>
-                            <a class="dropdown-item" href="#Gemüse" wordfield="Gemüse">Obst & Gemüse</a>
+                            <a class="dropdown-item" href="#Obst" wordfield="Obst">Obst</a>
+                            <a class="dropdown-item" href="#Sport" wordfield="Sport">Sport(Ballsport)</a>
                         </div>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#moebel" id="random-quiz">Zufallsquiz</a>
+                        <a class="nav-link" href="#moebel" id="random-quiz">Teste dein Wissen im Zufallsquiz!</a>
                     </li>
                     </li>
 
@@ -62,28 +65,13 @@
     <div id="home" class="game-intro">
         <div class="card bg-dark text-white">
 
-            <img src="./images/Download.png" class="card-img" alt="...">
+            <img src="./images/stack-books-library-desk/342407-PA9PYX-915.jpg" class="card-img" alt="...">
             <div class="card-img-overlay">
                 <button id="start-button" class="btn-start">Start</button>
-                <h5 class="card-title">Wortfällt</h5>
-                <p class="card-text">A word will fall down and you have to type it in with its correct spelling.<br>
-                    Before you type the next word, you have to repeat all the words, that passed before(correct
-                    order and spelling, separated by blanks).<br>
-                    With each new word, the speed decreases, to make
-                    sure that you have enough time, to
-                    type in all the words.<br>
-                    If you fail even one letter, you start again.</p><br><br>
-                <p> Example: <br>
-                    "Wort1"<br>
-                    "Wort1 Wort2" <br>
-                    "Wort1 Wort2 Wort3"<br>
-                    "Wort1 Wort2 Wort3 Wort4"<br>
-                    "Wort1 Wort2 Wort3 Wort4 Wort5"<br>
-                    "Wort1 Wort2 Wort3 Wort4 Wort5 Wort6"<br>
-                    "Wort1 Wort2 Wort3 Wort4 Wort5 Wort6 Wort7"<br>
-                    "Wort1 Wort2 Wort3 Wort4 Wort5 Wort6 Wort7 Wort8"<br>
-                </p>
-
+                <h5 class="card-title"><br><br>Wortfällt - Das Kettenspiel zum Wörter lernen</h5>
+                <p class="card-text">Wenn ein Wort fällt, tipp es und merk es dir.<br>
+                    Wenn ein neues Wort fällt, tipp alle Wörter, die davor schon fielen, vor das neue.<br>
+                    Wenn du einen Fehler tippst, fängt das Wortfeld von vorne an.</p><br>
 
             </div>
         </div>
@@ -156,20 +144,16 @@
 
                 <canvas id="img-wordfield" height="200px" width="300px"></canvas>
             </div>
+
+
             <div id="time-counter">
 
                 <canvas id="time-point-counter" height="200px" width="300px"></canvas>
             </div>
+
+
         </div>
 
-        <!-- <div class="board">
-            <canvas id="game" height="595px" width="850px"></canvas>
-            <div id="user-input">
-                <label for="words">Type in your chain of words:</label>
-                <input name="words" type="text">
-                <button id="get-input" class="btn-input">Submit</button>
-            </div>
-        </div> -->
     </div>
 
 
