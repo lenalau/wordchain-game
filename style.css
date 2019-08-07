@@ -24,7 +24,28 @@ img {
   opacity: 0.3;
   filter: alpha(opacity=30);
 }
-
+#worldfield-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+#btn-solution {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+  margin-left: 115px;
+}
+#btn-back {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+  margin-left: 115px;
+  padding-left: 15.5px;
+  padding-right: 15.5px;
+}
 /* .card img {
   opacity: 1;
   filter: alpha(opacity=100);
