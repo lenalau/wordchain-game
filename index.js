@@ -197,6 +197,7 @@ function drawImagequiz() {
     document.getElementById("user-input").style.display = "block"
     document.getElementById("btn-back").style.display = "none"
     document.getElementById("btn-solution").style.display = "block"
+    document.getElementsByClassName("input-inst")[0].innerHTML = "Nur ein Wort eingeben:"
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, 595, 416);
@@ -241,6 +242,7 @@ function checkImagequizInput() {
             if (fieldIndex < (wordfield.length - 1)) {
 
                 alert('Super! Jetzt kommt das naechste Wortfeld.')
+                document.getElementsByClassName("input-inst")[0].innerHTML = "Hier die Wortkette eingeben:"
                 state.startNextWordchain()
 
             } else { // if last word of last wordfield
@@ -276,9 +278,12 @@ function drawCounter() {
     countctx.fillText([count], 30, 120);
 
 }
-let l = length - 3
-let randFieldIndex = [(Math.floor(Math.random() * (pics.length - 1)))]
-let randImgIndex = [(Math.floor(Math.random() * (pics[randFieldIndex].l)))]
+
+function sampleRandomIndices() {
+    randFieldIndex = [(Math.floor(Math.random() * (pics.length - 1)))]
+    randImgIndex = [(Math.floor(Math.random() * (pics[randFieldIndex].length - 1)))]
+}
+sampleRandomIndices()
 
 function drawRandomQuiz() { // define a new state and act between
     state.randomquizz = true
@@ -286,6 +291,7 @@ function drawRandomQuiz() { // define a new state and act between
     document.getElementById("wordfield-icon").style.display = "none"
     document.getElementById("user-input").style.display = "block"
     document.getElementById("time-counter").style.display = "block"
+    document.getElementsByClassName("input-inst")[0].innerHTML = "Nur ein Wort eingeben:"
 
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
     ctx.fillStyle = "white";
@@ -310,8 +316,7 @@ function checkRandomquizInput() {
     console.log(wordfield[randFieldIndex][randImgIndex])
     if (userInput === wordfield[randFieldIndex][randImgIndex] || userInput === "") {
         document.getElementsByTagName('input')[0].value = ""
-        randImgIndex = [(Math.floor(Math.random() * pics[fieldIndex].length))]
-        randFieldIndex = [(Math.floor(Math.random() * pics.length))]
+        sampleRandomIndices()
         count += 1
         drawRandomQuiz()
         drawCounter()
@@ -325,8 +330,7 @@ function checkRandomquizInput() {
     } else { // if input is not correct 
         alert('oops, please try again')
         document.getElementsByTagName('input')[0].value = ""
-        randImgIndex = [(Math.floor(Math.random() * pics[fieldIndex].length))]
-        randFieldIndex = [(Math.floor(Math.random() * pics.length))]
+        sampleRandomIndices()
         drawRandomQuiz()
         count -= 1
         drawCounter()
@@ -397,6 +401,7 @@ window.onload = function () {
             document.getElementById("user-input").style.display = "block"
             document.getElementById("example").style.display = "block"
             document.getElementById("time-counter").style.display = "none"
+            document.getElementsByClassName("input-inst")[0].innerHTML = "Hier die Wortkette eingeben:"
 
             fieldIndex = index - 1
             imgIndex = 0
