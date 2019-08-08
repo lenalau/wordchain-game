@@ -56,7 +56,7 @@ let handleInput = (event) => {
 
 let wordfield = [
     ['Lampe', 'Tisch', 'Bett', 'Schrank', 'Sofa', 'Stuhl', 'Regal', 'Pflanze'],
-    ['Reis', 'Kartoffeln', 'Nudeln', 'Brot', 'Käse', 'Fleisch', 'Eier', 'Salz'],
+    ['Reis', 'Kartoffeln', 'Nudeln', 'Brot', 'Kaese', 'Fleisch', 'Eier', 'Salz'],
     ['Wasser', 'Saft', 'Kaffee', 'Tee', 'Bier', 'Wein', 'Milch', 'Limonade'],
     ['Apfel', 'Banane', 'Birne', 'Erdbeeren', 'Kirschen', 'Weintrauben', 'Zitrone'],
     ['Fußball', 'Basketball', 'Eishockey', 'Tennis', 'Volleyball', 'Handball', 'Golf']
@@ -65,15 +65,15 @@ let wordfield = [
 
 
 let pics = [
-    ['./images/möbel/Lampe.jpeg', './images/möbel/Tisch.jpeg', './images/möbel/Bett.jpeg', './images/möbel/Schrank.jpeg', './images/möbel/Sofa.jpeg', './images/möbel/Stuhl.jpeg', './images/möbel/Regal.jpeg', './images/möbel/Pflanze.jpeg', './images/möbel/Sol_Wordfield_Möbel.jpeg'],
-    ['./images/supermarkt/Reis.jpeg', './images/supermarkt/Kartoffeln.jpeg', './images/supermarkt/Nudeln.jpeg', './images/supermarkt/Brot.jpeg', './images/supermarkt/Käse.jpeg', './images/supermarkt/Fleisch.jpeg', './images/supermarkt/Eier.jpeg', './images/supermarkt/Salz.jpeg', './images/supermarkt/Sol_Wordfield_Lebensmittel.jpg'],
-    ['./images/Getränke/Wasser.jpeg', './images/Getränke/Saft.jpeg', './images/Getränke/Kaffee.jpeg', './images/Getränke/Tee.jpeg', './images/Getränke/Bier.jpeg', './images/Getränke/Wein.jpeg', './images/Getränke/Milch.jpeg', './images/Getränke/Limonade.jpeg', './images/Getränke/Sol_Wordfield_Getränke.jpg'],
+    ['./images/moebel/Lampe.jpeg', './images/moebel/Tisch.jpeg', './images/moebel/Bett.jpeg', './images/moebel/Schrank.jpeg', './images/moebel/Sofa.jpeg', './images/moebel/Stuhl.jpeg', './images/moebel/Regal.jpeg', './images/moebel/Pflanze.jpeg', './images/moebel/Sol_Wordfield_Moebel.jpeg'],
+    ['./images/supermarkt/Reis.jpeg', './images/supermarkt/Kartoffeln.jpeg', './images/supermarkt/Nudeln.jpeg', './images/supermarkt/Brot.jpeg', './images/supermarkt/Kaese.jpeg', './images/supermarkt/Fleisch.jpeg', './images/supermarkt/Eier.jpeg', './images/supermarkt/Salz.jpeg', './images/supermarkt/Sol_Wordfield_Lebensmittel.jpg'],
+    ['./images/Getraenke/Wasser.jpeg', './images/Getraenke/Saft.jpeg', './images/Getraenke/Kaffee.jpeg', './images/Getraenke/Tee.jpeg', './images/Getraenke/Bier.jpeg', './images/Getraenke/Wein.jpeg', './images/Getraenke/Milch.jpeg', './images/Getraenke/Limonade.jpeg', './images/Getraenke/Sol_Wordfield_Getraenke.jpg'],
     ['./images/obst/Apfel.jpeg', './images/obst/Banane.jpeg', './images/obst/Birne.jpeg', './images/obst/Erdbeeren.png', './images/obst/Kirschen.jpeg', './images/obst/Weintrauben.jpeg', './images/obst/Zitrone.jpeg', './images/obst/Sol_Wordfield_Obst.jpg'],
     ['./images/Ballsport/fussball.jpeg', './images/Ballsport/Basketball.jpeg', './images/Ballsport/Eishockey.jpeg', './images/Ballsport/Tennis.jpeg', './images/Ballsport/Volleyball.jpeg', './images/Ballsport/Handball.jpeg', './images/Ballsport/Golf.jpeg', './images/Ballsport/Sol_Wordfield_Ballsport.jpg']
 ]
 
 let wordfieldWords = ['Möbel', 'Lebensmittel', 'Getränke', 'Obst', 'Ballsport', 'Glückwunsch!']
-let wordfieldPics = ['./images/möbel/wortfeld_möbel.jpeg', './images/supermarkt/WF Supermarkt.jpeg', './images/Getränke/Getränke.jpeg', './images/obst/Obst.jpg', './images/Ballsport/Ballsport.jpeg', './images/Eule.jpg']
+let wordfieldPics = ['./images/moebel/wortfeld_moebel.jpeg', './images/supermarkt/WF Supermarkt.jpeg', './images/Getraenke/Getraenke.jpeg', './images/obst/Obst.jpg', './images/Ballsport/Ballsport.jpeg', './images/Eule.jpg']
 
 let myCanvas;
 let ctx;
@@ -240,7 +240,7 @@ function checkImagequizInput() {
             // if last word but not last wordfield
             if (fieldIndex < (wordfield.length - 1)) {
 
-                alert('Super! Jetzt kommt das nächste Wortfeld.')
+                alert('Super! Jetzt kommt das naechste Wortfeld.')
                 state.startNextWordchain()
 
             } else { // if last word of last wordfield
@@ -272,7 +272,7 @@ function drawCounter() {
 
     countctx.font = "25px 'Concert One' "
     countctx.fillStyle = "black";
-    countctx.fillText('Richtige Wörter:', 30, 80);
+    countctx.fillText('Richtige Woerter:', 30, 80);
     countctx.fillText([count], 30, 120);
 
 }
@@ -318,7 +318,7 @@ function checkRandomquizInput() {
 
         if (count === 50) {
             drawCounter()
-            alert('Nicht schlecht! 50 Wörter!')
+            alert('Nicht schlecht! 50 Woerter!')
 
 
         }
