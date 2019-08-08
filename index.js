@@ -321,9 +321,9 @@ function checkRandomquizInput() {
         drawRandomQuiz()
         drawCounter()
 
-        if (count === 50) {
+        if (count === 100) {
             drawCounter()
-            alert('Nicht schlecht! 50 Woerter!')
+            alert('100 Wörter! Du weißt sie alle!')
 
 
         }
