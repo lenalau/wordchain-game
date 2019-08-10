@@ -274,7 +274,7 @@ function drawCounter() {
 
     countctx.font = "25px 'Concert One' "
     countctx.fillStyle = "black";
-    countctx.fillText('Richtige Woerter:', 30, 80);
+    countctx.fillText('Richtige Wörter:', 30, 80);
     countctx.fillText([count], 30, 120);
 
 }
